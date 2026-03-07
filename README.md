@@ -2,6 +2,9 @@
 
 Full-stack personal portfolio (MERN stack developer & UI/UX designer). Built with **Vite + React + TailwindCSS + Framer Motion** (frontend) and **Node + Express** (backend).
 
+<img width="1882" height="912" alt="image" src="https://github.com/user-attachments/assets/ba736c40-5b60-48e9-9f16-5fd64f11fc0c" />
+
+
 ## Project structure
 
 ```
