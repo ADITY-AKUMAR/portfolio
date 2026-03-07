@@ -6,6 +6,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import contactRoutes from './routes/contact.routes.js';
 
 dotenv.config();
@@ -35,6 +37,26 @@ app.use('/api/contact', contactRoutes);
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Portfolio API running' });
 });
+
+/**
+ * Production: serve the frontend build from the same server.
+ * This allows a single Render Web Service to host:
+ * - Frontend at `/`
+ * - Backend APIs under `/api/*`
+ */
+if (process.env.NODE_ENV === 'production') {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+
+  // backend/src/server.js -> backend/src -> backend -> portfolio root
+  const distPath = path.resolve(__dirname, '..', '..', 'frontend', 'dist');
+  app.use(express.static(distPath));
+
+  // SPA fallback (avoid intercepting API routes)
+  app.get(/^(?!\/api\/).*/, (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
