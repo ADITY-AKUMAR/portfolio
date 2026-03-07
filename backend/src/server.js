@@ -13,8 +13,19 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173' }));
+// CORS: allow frontend in dev and production (Render: https://aditya-gaku.onrender.com)
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://aditya-gaku.onrender.com',
+  ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL] : []),
+].filter(Boolean);
+app.use(cors({
+  origin: (origin, cb) => {
+    if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+    return cb(null, false);
+  },
+  credentials: true,
+}));
 app.use(express.json());
 
 // API routes

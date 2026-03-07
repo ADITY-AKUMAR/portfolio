@@ -2,6 +2,9 @@
  * Central site data - developer info, projects, skills, case studies (from Resume + portfolio)
  */
 
+/** Live portfolio URL (Render) */
+export const siteUrl = 'https://aditya-gaku.onrender.com';
+
 export const developer = {
   name: 'Aditya Kumar',
   role: 'MERN Stack Developer & UI/UX Designer',
@@ -9,7 +12,8 @@ export const developer = {
   degree: 'B.Tech in Computer Science and Engineering (2022 – 2026)',
   goal: 'Placement + SDE + UI/UX roles',
   tagline: 'I build scalable web apps with clean UI and real-world solutions.',
-  resumeUrl: '/ResumeF.pdf', // Put your ResumeF.pdf in frontend/public/
+  resumeUrl: '/ResumeF.pdf',
+  siteUrl,
   email: 'adityakumar14052005@gmail.com',
   phone: '+91 9335994196',
   social: {
