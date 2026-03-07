@@ -29,10 +29,10 @@ app.use(cors({
 app.use(express.json());
 
 // API routes
-app.use('/api/contact', contactRoutes);
+app.use('https://aditya-gaku.onrender.com/api/contact', contactRoutes);
 
 // Health check
-app.get('/api/health', (req, res) => {
+app.get('https://aditya-gaku.onrender.com/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Portfolio API running' });
 });
 
